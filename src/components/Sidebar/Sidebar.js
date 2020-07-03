@@ -1,7 +1,8 @@
 import React from 'react';
+import Cities from './Cities/Cities';
 
 const sidebar = (props) => {
-  return <div>Sidebar</div>;
+  return <Cities />;
 };
 
 export default sidebar;
