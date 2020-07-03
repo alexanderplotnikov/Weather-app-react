@@ -5,6 +5,20 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://api.openweathermap.org/data/2.5';
+axios.interceptors.request.use(
+  (config) => {
+    config.params = config.params || {};
+    config.params['token'] = 'cff94b8a948e9c08f85577e5ff4c22d7';
+    return config;
+  },
+  (error) => {
+    console.log(error);
+    return Promise.reject(error);
+  }
+);
 ReactDOM.render(
   <React.StrictMode>
     <App />
