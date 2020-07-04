@@ -1,19 +1,45 @@
 .WeatherView {
   width: 400px;
   align-self: center;
+  /* border: 1px solid black; */
   position: absolute;
   top: 100px;
   left: calc((100% - 400px) / 2);
   text-align: center;
 }
 
-.WeatherView > p {
+.WeatherView h2 {
   font-size: 1.7rem;
+  line-height: 1.1em;
+  font-weight: normal;
+  color: transparent;
+}
+.WeatherView span {
+  background: rgb(29, 237, 253);
+  background: linear-gradient(
+    90deg,
+    rgba(29, 237, 253, 1) 1%,
+    rgba(12, 87, 88, 1) 100%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  display: block;
+}
+.WeatherView p {
+  font-size: 1.2rem;
+  padding-top: 0.8em;
+  color: rgb(73, 73, 73);
 }
 
 .WeatherView > div {
   display: flex;
-  justify-content: center;
   padding-top: 3rem;
   justify-content: space-evenly;
+}
+.WeatherView > div > div {
+  width: 90px;
+}
+
+.WeatherView i {
+  color: grey;
 }

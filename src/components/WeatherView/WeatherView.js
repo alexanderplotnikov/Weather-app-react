@@ -14,7 +14,7 @@ class WeatherView extends Component {
     windDeg: null,
     time: null,
     humidity: null,
-    units: 'C',
+    units: { temp: 'C', speed: 'm/s' },
   };
   fetchData = (city) => {
     axios
@@ -46,7 +46,11 @@ class WeatherView extends Component {
     return (
       <div className={classes.WeatherView}>
         <WeatherControls fetchData={this.fetchData} />
-        <p>Weather in {this.state.city} today</p>
+
+        <h2>
+          <span>Weather in {this.state.city} today</span>
+        </h2>
+
         <div>
           <i
             className={[
@@ -63,7 +67,7 @@ class WeatherView extends Component {
               )}
             ></i>
             <p>
-              {this.state.temp}&deg;{this.state.units}
+              {this.state.temp}&deg;{this.state.units.temp}
             </p>
           </div>
           <div>
@@ -80,7 +84,10 @@ class WeatherView extends Component {
                 iconWindClasses[`from-${this.state.windDeg}-deg`],
               ].join(' ')}
             ></i>
-            <p>{this.state.windSpeed}</p>
+            <p>
+              {this.state.windSpeed}
+              {this.state.units.speed}
+            </p>
           </div>
         </div>
       </div>
