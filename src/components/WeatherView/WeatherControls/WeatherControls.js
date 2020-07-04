@@ -1,4 +1,6 @@
 import React from 'react';
+import classes from './WeatherControls.module.css';
+import searchIcon from '../../../assets/svg/loupe.svg';
 
 const weatherControls = (props) => {
   const submitHandler = (e) => {
@@ -7,9 +9,11 @@ const weatherControls = (props) => {
     e.preventDefault();
   };
   return (
-    <form onSubmit={submitHandler}>
+    <form className={classes.WeatherControls} onSubmit={submitHandler}>
       <input type="text" placeholder="City:" />
-      <button>Search</button>
+      <button tabIndex="-1">
+        <img src={searchIcon} alt="search" />
+      </button>
     </form>
   );
 };

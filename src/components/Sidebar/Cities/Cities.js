@@ -8,7 +8,6 @@ const cities = (props) => {
 
   let TEMP = Object.keys(cities).map((cKey) => {
     return [...Array(cities[cKey])].map((city, i) => {
-      console.log(i);
       return <City key={cKey} city={city.city} temp={city.temp} />;
     });
   });

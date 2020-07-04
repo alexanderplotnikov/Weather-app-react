@@ -1,0 +1,35 @@
+.WeatherControls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3em;
+}
+.WeatherControls button {
+  background-color: transparent;
+  border: none;
+  transition: all ease-in-out 0.3s;
+}
+.WeatherControls button:focus {
+  transform: rotate(-90deg);
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+
+.WeatherControls img {
+  height: 32px;
+  cursor: pointer;
+}
+.WeatherControls input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  height: 32px;
+  width: 50%;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all ease-in-out 0.3s;
+}
+.WeatherControls input:focus {
+  border-color: black;
+  width: 60%;
+}
