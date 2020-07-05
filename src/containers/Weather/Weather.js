@@ -6,11 +6,18 @@ class Weather extends Component {
   state = {
     cities: [],
   };
+  addFavoriteHandler = (cityCode) => {
+    const updatedCities = [...this.state.cities];
+    // const newCity = { id: cityCode };
+    updatedCities.push(cityCode);
+    let uniqCities = [...new Set(updatedCities)];
+    this.setState({ cities: uniqCities });
+  };
   render() {
     return (
       <div className={classes.Weather}>
-        <Sidebar />
-        <WeatherView />
+        <Sidebar cities={this.state.cities} />
+        <WeatherView addFavorite={this.addFavoriteHandler} />
       </div>
     );
   }

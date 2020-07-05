@@ -5,7 +5,7 @@ import classes from './Sidebar.module.css';
 const sidebar = (props) => {
   return (
     <div className={classes.Sidebar}>
-      <Cities />;
+      <Cities cities={props.cities} />
     </div>
   );
 };

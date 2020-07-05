@@ -15,6 +15,7 @@ class WeatherView extends Component {
     time: null,
     humidity: null,
     units: { temp: 'C', speed: 'm/s' },
+    cityID: null,
   };
   fetchData = (city) => {
     axios
@@ -28,19 +29,25 @@ class WeatherView extends Component {
         const iconId = response.data.weather[0].id;
         const windDirection = response.data.wind.deg;
         const humidity = response.data.main.humidity;
+        const cityCode = response.data.id;
+        const cityName = response.data.name;
         this.setState({
-          city: city,
+          city: cityName,
           temp: response.data.main.temp.toFixed(1),
           windSpeed: response.data.wind['speed'],
           iconId: iconId,
           time: '-' + daytime,
           windDeg: windDirection,
           humidity: humidity,
+          cityID: cityCode,
         });
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+  saveHandler = () => {
+    this.props.addFavorite(this.state.cityID);
   };
   render() {
     return (
@@ -49,11 +56,13 @@ class WeatherView extends Component {
 
         <h2>
           <span>Weather in {this.state.city} today</span>
+          <button onClick={this.saveHandler}>Save to Fav</button>
         </h2>
 
         <div>
           <i
             className={[
+              classes.Info,
               iconClasses.wi,
               iconClasses[`wi-owm${this.state.time}-${this.state.iconId}`],
             ].join(' ')}
@@ -61,24 +70,31 @@ class WeatherView extends Component {
         </div>
         <div>
           <div>
-            <i
-              className={[iconClasses.wi, iconClasses['wi-thermometer']].join(
-                ' '
-              )}
-            ></i>
-            <p>
+            <span className={classes.Thermometer}>
+              <i
+                className={[iconClasses.wi, iconClasses['wi-thermometer']].join(
+                  ' '
+                )}
+              ></i>
+            </span>
+            <p className={classes.Thermometer}>
               {this.state.temp}&deg;{this.state.units.temp}
             </p>
           </div>
           <div>
             <i
-              className={[iconClasses.wi, iconClasses['wi-raindrop']].join(' ')}
+              className={[
+                classes.Humidity,
+                iconClasses.wi,
+                iconClasses['wi-raindrop'],
+              ].join(' ')}
             ></i>
-            <p>{this.state.humidity}%</p>
+            <p className={classes.Humidity}>{this.state.humidity}%</p>
           </div>
           <div>
             <i
               className={[
+                classes.Wind,
                 iconWindClasses.wi,
                 iconWindClasses['wi-wind'],
                 iconWindClasses[`from-${this.state.windDeg}-deg`],

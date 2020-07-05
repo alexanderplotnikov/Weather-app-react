@@ -1,17 +1,19 @@
 import React from 'react';
 import City from './City/City';
+import axios from 'axios';
 const cities = (props) => {
-  const cities = [
-    { city: 'moscow', temp: '23' },
-    { city: 'los gatos', temp: '34' },
-  ];
+  // let TEMP = Object.keys(props.cities).map((cKey) => {
+  //   return [...Array(props.cities[cKey])].map((city, i) => {
+  //     return <City key={i} city={city.id} />;
+  //   });
+  // });
 
-  let TEMP = Object.keys(cities).map((cKey) => {
-    return [...Array(cities[cKey])].map((city, i) => {
-      return <City key={cKey} city={city.city} temp={city.temp} />;
-    });
-  });
-  return <div>{TEMP}</div>;
+  async function getCities() {
+    const cities = [...props.cities];
+  }
+  const contents = getCities();
+  console.log(contents);
+  return <div>{}</div>;
 };
 
 export default cities;

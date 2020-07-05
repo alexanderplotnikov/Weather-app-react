@@ -26,12 +26,15 @@ button::-moz-focus-inner {
   border: none;
   border-bottom: 2px solid #ccc;
   height: 32px;
-  width: 50%;
+  width: 60%;
+  color: grey;
   margin-right: 1em;
   box-sizing: border-box;
   transition: all ease-in-out 0.3s;
 }
 .WeatherControls input:focus {
-  border-color: black;
-  width: 60%;
+  border-color: #1db9fd;
+  width: 70%;
+  font-size: 1.1em;
+  color: #1db9fd;
 }
