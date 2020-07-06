@@ -16,6 +16,10 @@ class WeatherView extends Component {
     humidity: null,
     units: { temp: 'C', speed: 'm/s' },
     cityID: null,
+    saved: null,
+  };
+  isFavorite = (id) => {
+    return this.props.favorite.includes(id);
   };
   fetchData = (city) => {
     axios
@@ -31,6 +35,8 @@ class WeatherView extends Component {
         const humidity = response.data.main.humidity;
         const cityCode = response.data.id;
         const cityName = response.data.name;
+        const inFavorite = this.isFavorite(cityCode);
+        console.log(inFavorite);
         this.setState({
           city: cityName,
           temp: response.data.main.temp.toFixed(1),
@@ -40,6 +46,7 @@ class WeatherView extends Component {
           windDeg: windDirection,
           humidity: humidity,
           cityID: cityCode,
+          saved: inFavorite,
         });
       })
       .catch((error) => {
@@ -47,7 +54,15 @@ class WeatherView extends Component {
       });
   };
   saveHandler = () => {
-    this.props.addFavorite(this.state.cityID);
+    if (this.state.saved) {
+      //delete
+      this.props.removeFavorite(this.state.cityID);
+      console.log('delete');
+    } else {
+      this.props.addFavorite(this.state.cityID);
+    }
+    const isSaved = this.state.saved;
+    this.setState({ saved: !isSaved });
   };
   render() {
     return (

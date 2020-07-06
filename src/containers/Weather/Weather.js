@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 import classes from './Weather.module.css';
 class Weather extends Component {
   state = {
-    cities: [],
+    cities: [524901],
   };
   addFavoriteHandler = (cityCode) => {
     const updatedCities = [...this.state.cities];
@@ -13,11 +13,21 @@ class Weather extends Component {
     let uniqCities = [...new Set(updatedCities)];
     this.setState({ cities: uniqCities });
   };
+  removeFavoriteHandler = (cityCode) => {
+    const updatedCities = [...this.state.cities];
+    const index = updatedCities.indexOf(cityCode);
+    if (index !== -1) updatedCities.splice(index, 1);
+    this.setState({ cities: updatedCities });
+  };
   render() {
     return (
       <div className={classes.Weather}>
         <Sidebar cities={this.state.cities} />
-        <WeatherView addFavorite={this.addFavoriteHandler} />
+        <WeatherView
+          favorite={this.state.cities}
+          addFavorite={this.addFavoriteHandler}
+          removeFavorite={this.removeFavoriteHandler}
+        />
       </div>
     );
   }
