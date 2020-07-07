@@ -1,5 +1,7 @@
 .Sidebar {
-  width: 200px;
-  border-right: 1px solid #eee;
-  box-sizing: border-box;
+  width: 210px;
+  margin-top: 5em;
+  padding: 0 2em;
+  height: 400px;
+  overflow: scroll;
 }

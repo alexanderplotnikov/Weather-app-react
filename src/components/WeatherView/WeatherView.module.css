@@ -7,14 +7,38 @@
   left: calc((100% - 400px) / 2);
   text-align: center;
 }
+.WeatherView button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.WeatherView .Units {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.WeatherView .Units > p {
+  align-self: center;
+  padding: 0;
+}
 
+.WeatherView .Fav {
+  width: 30px;
+  filter: invert(50%) sepia(0%) saturate(3124%) hue-rotate(50deg)
+    brightness(103%) contrast(90%);
+}
+.WeatherView .FavSolid {
+  width: 30px;
+  filter: invert(76%) sepia(89%) saturate(1479%) hue-rotate(1deg)
+    brightness(105%) contrast(103%);
+}
 .WeatherView h2 {
   font-size: 1.7rem;
   line-height: 1.1em;
   font-weight: normal;
   color: transparent;
 }
-.WeatherView span {
+.WeatherView h2 > span {
   background: rgb(29, 237, 253);
   background: linear-gradient(
     90deg,
@@ -49,7 +73,7 @@
 .WeatherView .Thermometer {
   background: rgb(255, 0, 0);
   background: linear-gradient(
-    0deg,
+    180deg,
     rgba(255, 0, 0, 1) 0%,
     rgba(29, 185, 253, 1) 100%
   );
@@ -57,10 +81,22 @@
   -webkit-background-clip: text;
   display: block;
 }
+.WeatherView .Temp {
+  color: rgb(255, 0, 0);
+}
 
 .WeatherView .Humidity {
   color: #1db9fd;
 }
 .WeatherView .Info {
   color: #bdb10f;
+  font-size: 4em;
+}
+.WeatherView p > span {
+  cursor: pointer;
+}
+.WeatherView .Active {
+  font-size: 1.25em;
+  cursor: default;
+  color: rgb(102, 102, 102);
 }

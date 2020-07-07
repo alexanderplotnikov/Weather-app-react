@@ -10,7 +10,7 @@ class Cities extends Component {
     this.fetchSidebarData();
   }
   componentDidUpdate(prevProps) {
-    if (this.props.cities !== prevProps.cities) {
+    if (this.props !== prevProps) {
       console.log('[Cities.js] ComponentDidUpdate');
       this.fetchSidebarData();
     }
@@ -20,7 +20,7 @@ class Cities extends Component {
     const promises = cities.map((city) => {
       return axios
         .get(
-          `/weather?id=${city}&units=metric&appid=cff94b8a948e9c08f85577e5ff4c22d7`
+          `/weather?id=${city}&units=${this.props.units.name}&appid=cff94b8a948e9c08f85577e5ff4c22d7`
         )
         .then((res) => {
           console.log(res);
@@ -35,7 +35,12 @@ class Cities extends Component {
         .map((cKey) => {
           return [...Array(data[cKey])].map((city, i) => {
             return (
-              <City key={cKey + i} city={city.name} temp={city.main.temp} />
+              <City
+                key={cKey + i}
+                unit={this.props.units.temp}
+                city={city.name}
+                temp={city.main.temp}
+              />
             );
           });
         })
