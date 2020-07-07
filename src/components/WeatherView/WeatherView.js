@@ -17,7 +17,7 @@ class WeatherView extends Component {
     windDeg: null,
     time: null,
     humidity: null,
-    units: { temp: 'C', speed: 'm/s' },
+    units: { temp: 'F', speed: 'mph' },
     cityID: null,
     saved: null,
   };
@@ -45,13 +45,13 @@ class WeatherView extends Component {
         const windDirection = response.data.wind.deg;
         const humidity = response.data.main.humidity;
         const cityCode = response.data.id;
+        console.log(cityCode);
         const cityName = response.data.name;
         const inFavorite = this.isFavorite(cityCode);
-        console.log(inFavorite);
         this.setState({
           city: cityName,
           temp: response.data.main.temp.toFixed(1),
-          windSpeed: response.data.wind['speed'],
+          windSpeed: response.data.wind['speed'].toFixed(1),
           iconId: iconId,
           time: '-' + daytime,
           windDeg: windDirection,

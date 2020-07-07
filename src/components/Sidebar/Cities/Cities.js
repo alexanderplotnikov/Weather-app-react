@@ -12,7 +12,6 @@ class Cities extends Component {
   }
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps) {
-      console.log('[Cities.js] ComponentDidUpdate');
       this.fetchSidebarData();
     }
   }
@@ -32,7 +31,7 @@ class Cities extends Component {
         });
     });
     Promise.all(promises).then((data) => {
-      let TEMP = Object.keys(data)
+      let tranformed = Object.keys(data)
         .map((cKey) => {
           return [...Array(data[cKey])].map((city, i) => {
             return (
@@ -48,21 +47,14 @@ class Cities extends Component {
         .reduce((arr, el) => {
           return arr.concat(el);
         }, []);
-      this.setState({ promises: TEMP });
+      this.setState({ promises: tranformed });
     });
   };
 
   render() {
     const cities = this.state.promises;
-    console.log(cities);
     return <div className={classes.Cities}>{cities}</div>;
   }
 }
-
-// let TEMP = Object.keys(props.cities).map((cKey) => {
-//   return [...Array(props.cities[cKey])].map((city, i) => {
-//     return <City key={i} city={city.id} />;
-//   });
-// });
 
 export default Cities;

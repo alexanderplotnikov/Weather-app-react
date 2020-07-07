@@ -3,13 +3,14 @@ import WeatherView from '../../components/WeatherView/WeatherView';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import classes from './Weather.module.css';
 import SelectContext from '../../components/context/SelectContext';
+const DEFAULT_CITIES = [5128581, 5368361, 2643743, 1850144, 524901];
 class Weather extends Component {
   state = {
-    cities: [524901],
+    cities: DEFAULT_CITIES,
     units: {
-      name: 'metric',
-      speed: 'm/s',
-      temp: 'C',
+      name: 'imperial',
+      speed: 'mph',
+      temp: 'F',
     },
     selectedCity: null,
   };
@@ -19,7 +20,6 @@ class Weather extends Component {
   };
   addFavoriteHandler = (cityCode) => {
     const updatedCities = [...this.state.cities];
-    // const newCity = { id: cityCode };
     updatedCities.push(cityCode);
     let uniqCities = [...new Set(updatedCities)];
     this.setState({ cities: uniqCities });
@@ -30,7 +30,7 @@ class Weather extends Component {
     if (index !== -1) updatedCities.splice(index, 1);
     this.setState({ cities: updatedCities });
   };
-  toggleUnitsHandler = (prevState) => {
+  toggleUnitsHandler = () => {
     let units = { ...this.state.units };
     const imperial = { name: 'imperial', speed: 'mph', temp: 'F' };
     const metric = { name: 'metric', speed: 'm/s', temp: 'C' };
