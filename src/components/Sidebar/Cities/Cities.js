@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import City from './City/City';
 import axios from 'axios';
+import classes from './Cities.module.css';
 
 class Cities extends Component {
   state = {
@@ -54,7 +55,7 @@ class Cities extends Component {
   render() {
     const cities = this.state.promises;
     console.log(cities);
-    return <div>{cities}</div>;
+    return <div className={classes.Cities}>{cities}</div>;
   }
 }
 

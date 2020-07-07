@@ -1,0 +1,25 @@
+.Cities {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 30px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 550px;
+}
+@media (min-width: 450px) {
+  .Cities {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 850px) {
+  .Cities {
+    display: block;
+    justify-self: start;
+    margin: 0;
+    width: 210px;
+    margin-top: 5em;
+    padding: 0 2em;
+    height: 400px;
+    overflow: scroll;
+  }
+}
